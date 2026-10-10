@@ -108,8 +108,8 @@ Notice the pattern: the *same* system can fail each pillar independently, and ea
         │  │  │  │  │  App: input checks,   │  │  │  │  │
         │  │  │  │  │  authn/authz          │  │  │  │  │
         │  │  │  │  │  ┌─────────────────┐  │  │  │  │  │
-        │  │  │  │  │  │  Data: encryption│  │  │  │  │  │
-        │  │  │  │  │  │  + backups       │  │  │  │  │  │
+        │  │  │  │  │  │ Data: encryption│  │  │  │  │  │
+        │  │  │  │  │  │ + backups       │  │  │  │  │  │
         │  │  │  │  │  └─────────────────┘  │  │  │  │  │
         │  │  │  │  └───────────────────────┘  │  │  │  │
         │  │  │  └─────────────────────────────┘  │  │  │
