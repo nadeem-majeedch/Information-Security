@@ -1,0 +1,20 @@
+SELF-CHECK ANSWERS - LAB-03 (attempt the cracking first!)
+========================================================
+Training dataset passwords (plaintext):
+  alice = password
+  bob = sunshine
+  carol = 123456
+  dave = qwerty
+  erin = letmein
+  frank = welcome1
+  grace = monkey
+  heidi = football
+  ivan = iloveyou
+  judy = admin
+  mallory = qwerty123
+  peggy = trustno1
+  trent = dragon
+  victor = master
+  wendy = shadow
+  quokka = H0use-Starlight!42   (salted SHA-256: sha256("k7Qx9Lm2" + password))
+These are deliberately weak training passwords. Never reuse them anywhere.

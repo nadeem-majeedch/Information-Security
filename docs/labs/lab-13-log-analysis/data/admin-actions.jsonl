@@ -1,0 +1,15 @@
+{"ts":"2026-10-10T06:03:20","host":"web01","user":"deploy","src_ip":"192.168.56.20","action":"systemctl","target":"nginx","result":"ok","tty":"pts/0","note":"planned deploy restart"}
+{"ts":"2026-10-10T06:11:50","host":"web01","user":"deploy","src_ip":"192.168.56.20","action":"journalctl","target":"-u app.service","result":"ok","tty":"pts/0","note":"log check after deploy"}
+{"ts":"2026-10-10T07:40:22","host":"web01","user":"admin","src_ip":"192.168.56.33","action":"apt","target":"update","result":"ok","tty":"pts/1","note":"routine package refresh"}
+{"ts":"2026-10-10T08:03:14","host":"web01","user":"admin","src_ip":"192.168.56.33","action":"systemctl","target":"restart sshd","result":"ok","tty":"pts/1","note":"config change"}
+{"ts":"2026-10-10T09:02:19","host":"web01","user":"deploy","src_ip":"192.168.56.20","action":"cp","target":"/srv/app/release.tar.gz","result":"ok","tty":"pts/0","note":"release artifact"}
+{"ts":"2026-10-10T11:17:41","host":"web01","user":"admin","src_ip":"192.168.56.33","action":"tail","target":"/var/log/nginx/access.log","result":"ok","tty":"pts/1","note":"incident-free review"}
+{"ts":"2026-10-10T14:45:33","host":"web01","user":"deploy","src_ip":"192.168.56.20","action":"systemctl","target":"reload app","result":"ok","tty":"pts/0","note":"config reload"}
+{"ts":"2026-10-10T16:30:19","host":"web01","user":"root","src_ip":"192.168.56.41","action":"usermod","target":"-aG sudo janedoe","result":"ok","tty":"pts/2","note":"provisioning per ticket OPS-4471"}
+{"ts":"2026-10-10T17:13:04","host":"web01","user":"admin","src_ip":"192.168.56.33","action":"df","target":"-h","result":"ok","tty":"pts/1","note":"capacity check"}
+{"ts":"2026-10-10T19:05:51","host":"web01","user":"deploy","src_ip":"192.168.56.20","action":"systemctl","target":"status app","result":"ok","tty":"pts/0","note":"evening health check"}
+{"ts":"2026-10-10T20:23:11","host":"web01","user":"svc_backup","src_ip":"192.168.56.105","action":"crontab","target":"-l","result":"ok","tty":"pts/3","note":"possible recon after compromise"}
+{"ts":"2026-10-10T20:24:47","host":"web01","user":"svc_backup","src_ip":"192.168.56.105","action":"useradd","target":"-m -s /bin/bash backup2","result":"ok","tty":"pts/3","note":"unauthorized account creation"}
+{"ts":"2026-10-10T20:26:35","host":"web01","user":"svc_backup","src_ip":"192.168.56.105","action":"bash","target":"-p","result":"ok","tty":"pts/3","note":"interactive root shell via service account"}
+{"ts":"2026-10-10T20:31:09","host":"web01","user":"svc_backup","src_ip":"192.168.56.105","action":"cat","target":"/etc/shadow","result":"ok","tty":"pts/3","note":"credential file read"}
+{"ts":"2026-10-10T21:48:37","host":"web01","user":"admin","src_ip":"192.168.56.33","action":"last","target":"-n 20","result":"ok","tty":"pts/1","note":"post-incident login review"}

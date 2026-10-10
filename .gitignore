@@ -1,0 +1,14 @@
+# Jekyll build artifacts (regenerate with: jekyll build -s docs -d _site)
+_site/
+.sass-cache/
+.jekyll-cache/
+.jekyll-metadata
+vendor/bundle/
+
+# Editor / agent workspace metadata (not course content)
+.freebuff/
+
+# OS noise
+Thumbs.db
+Desktop.ini
+.DS_Store

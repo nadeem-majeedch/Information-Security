@@ -1,0 +1,25 @@
+{
+  "_comment": "SYNTHETIC mock identity policy for LAB-17 review. Not attached to any real account.",
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "LegacyFullAccess",
+      "Effect": "Allow",
+      "Action": "*",
+      "Resource": "*"
+    },
+    {
+      "Sid": "ContractorAccess",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
+      "Resource": "arn:aws:s3:::corp-documents-archive/*"
+    },
+    {
+      "Sid": "AdminsWithoutMFA",
+      "Effect": "Allow",
+      "Action": "iam:CreateAccessKey",
+      "Resource": "*",
+      "Condition": {"StringEquals": {"aws:MultiFactorAuthPresent": "false"}}
+    }
+  ]
+}

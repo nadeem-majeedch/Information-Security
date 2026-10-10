@@ -1,0 +1,40 @@
+<!-- Favicon: docs/favicon.ico exists; the theme ships this hook commented out. -->
+<link rel="icon" type="image/x-icon" href="{{ '/favicon.ico' | relative_url }}">
+
+<!-- Accessibility progressive enhancements — see MAINTENANCE.md §5.
+     Injected by the minimal theme's built-in head-custom.html hook.
+     Everything here is additive; the page works without it. -->
+<script>
+(function () {
+  function enhance() {
+    // 1. GFM task-list checkboxes: give each one its checklist item text as the
+    //    accessible name (kramdown renders the text as a sibling, not a <label>).
+    document.querySelectorAll('li.task-list-item > input.task-list-item-checkbox').forEach(function (cb) {
+      if (cb.getAttribute('aria-label')) return;
+      var name = (cb.parentElement.textContent || '').replace(/\s+/g, ' ').trim().slice(0, 120);
+      if (name) cb.setAttribute('aria-label', name);
+    });
+    // 2. Keyboard access (WCAG 2.1.1) for horizontally scrollable regions the
+    //    stylesheet creates: wide tables and code blocks.
+    document.querySelectorAll('table, pre').forEach(function (el) {
+      if (el.scrollWidth <= el.clientWidth + 2) return;
+      if (el.getAttribute('tabindex')) return;
+      el.setAttribute('tabindex', '0');
+      el.setAttribute('role', 'region');
+      var caption = el.querySelector && el.querySelector('caption');
+      var name = (caption && caption.textContent) || (el.tagName === 'PRE' ? 'Scrollable code block' : 'Scrollable table');
+      el.setAttribute('aria-label', name.replace(/\s+/g, ' ').trim().slice(0, 120));
+    });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', enhance);
+  } else {
+    enhance();
+  }
+  // Layout can change which regions overflow (fonts, late CSS): re-check on load
+  // and after resizing.
+  window.addEventListener('load', enhance);
+  var t;
+  window.addEventListener('resize', function () { clearTimeout(t); t = setTimeout(enhance, 250); });
+})();
+</script>

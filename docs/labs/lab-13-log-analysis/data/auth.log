@@ -1,0 +1,62 @@
+Oct 10 09:02:11 web01 systemd[1]: Started Session 31 of user deploy.
+Oct 10 03:14:00 web01 sshd[2200]: Failed password for dbadmin from 192.168.56.105 port 40000 ssh2
+Oct 10 03:14:07 web01 sshd[2201]: Failed password for invalid user admin from 192.168.56.105 port 40013 ssh2
+Oct 10 03:14:14 web01 sshd[2202]: Failed password for invalid user admin from 192.168.56.105 port 40026 ssh2
+Oct 10 03:14:21 web01 sshd[2203]: Failed password for dbadmin from 192.168.56.105 port 40039 ssh2
+Oct 10 03:14:28 web01 sshd[2204]: Failed password for invalid user oracle from 192.168.56.105 port 40052 ssh2
+Oct 10 03:14:35 web01 sshd[2205]: Failed password for invalid user test from 192.168.56.105 port 40065 ssh2
+Oct 10 03:14:42 web01 sshd[2206]: Failed password for svc_backup from 192.168.56.105 port 40078 ssh2
+Oct 10 03:14:49 web01 sshd[2207]: Failed password for invalid user test from 192.168.56.105 port 40091 ssh2
+Oct 10 03:14:56 web01 sshd[2208]: Failed password for invalid user git from 192.168.56.105 port 40104 ssh2
+Oct 10 03:14:03 web01 sshd[2209]: Failed password for svc_backup from 192.168.56.105 port 40117 ssh2
+Oct 10 03:15:10 web01 sshd[2210]: Failed password for invalid user git from 192.168.56.105 port 40130 ssh2
+Oct 10 03:15:17 web01 sshd[2211]: Failed password for invalid user git from 192.168.56.105 port 40143 ssh2
+Oct 10 03:15:24 web01 sshd[2212]: Failed password for dbadmin from 192.168.56.105 port 40156 ssh2
+Oct 10 03:15:31 web01 sshd[2213]: Failed password for invalid user admin from 192.168.56.105 port 40169 ssh2
+Oct 10 03:15:38 web01 sshd[2214]: Failed password for invalid user postgres from 192.168.56.105 port 40182 ssh2
+Oct 10 03:15:45 web01 sshd[2215]: Failed password for deploy from 192.168.56.105 port 40195 ssh2
+Oct 10 03:15:52 web01 sshd[2216]: Failed password for invalid user admin from 192.168.56.105 port 40208 ssh2
+Oct 10 03:15:59 web01 sshd[2217]: Failed password for invalid user admin from 192.168.56.105 port 40221 ssh2
+Oct 10 03:15:06 web01 sshd[2218]: Failed password for svc_backup from 192.168.56.105 port 40234 ssh2
+Oct 10 03:15:13 web01 sshd[2219]: Failed password for invalid user test from 192.168.56.105 port 40247 ssh2
+Oct 10 03:16:20 web01 sshd[2220]: Failed password for invalid user test from 192.168.56.105 port 40260 ssh2
+Oct 10 03:16:27 web01 sshd[2221]: Failed password for dbadmin from 192.168.56.105 port 40273 ssh2
+Oct 10 03:16:34 web01 sshd[2222]: Failed password for invalid user postgres from 192.168.56.105 port 40286 ssh2
+Oct 10 03:16:41 web01 sshd[2223]: Failed password for invalid user admin from 192.168.56.105 port 40299 ssh2
+Oct 10 03:16:48 web01 sshd[2224]: Failed password for dbadmin from 192.168.56.105 port 40312 ssh2
+Oct 10 03:16:55 web01 sshd[2225]: Failed password for invalid user test from 192.168.56.105 port 40325 ssh2
+Oct 10 03:16:02 web01 sshd[2226]: Failed password for invalid user git from 192.168.56.105 port 40338 ssh2
+Oct 10 03:16:09 web01 sshd[2227]: Failed password for dbadmin from 192.168.56.105 port 40351 ssh2
+Oct 10 03:16:16 web01 sshd[2228]: Failed password for invalid user git from 192.168.56.105 port 40364 ssh2
+Oct 10 03:16:23 web01 sshd[2229]: Failed password for invalid user postgres from 192.168.56.105 port 40377 ssh2
+Oct 10 03:17:30 web01 sshd[2230]: Failed password for deploy from 192.168.56.105 port 40390 ssh2
+Oct 10 03:17:37 web01 sshd[2231]: Failed password for invalid user test from 192.168.56.105 port 40403 ssh2
+Oct 10 03:17:44 web01 sshd[2232]: Failed password for invalid user ubuntu from 192.168.56.105 port 40416 ssh2
+Oct 10 03:17:51 web01 sshd[2233]: Failed password for dbadmin from 192.168.56.105 port 40429 ssh2
+Oct 10 03:17:58 web01 sshd[2234]: Failed password for invalid user oracle from 192.168.56.105 port 40442 ssh2
+Oct 10 03:17:05 web01 sshd[2235]: Failed password for invalid user admin from 192.168.56.105 port 40455 ssh2
+Oct 10 03:17:12 web01 sshd[2236]: Failed password for svc_backup from 192.168.56.105 port 40468 ssh2
+Oct 10 03:17:19 web01 sshd[2237]: Failed password for invalid user git from 192.168.56.105 port 40481 ssh2
+Oct 10 03:17:26 web01 sshd[2238]: Failed password for invalid user ubuntu from 192.168.56.105 port 40494 ssh2
+Oct 10 03:17:33 web01 sshd[2239]: Failed password for deploy from 192.168.56.105 port 40507 ssh2
+Oct 10 03:18:40 web01 sshd[2240]: Failed password for invalid user oracle from 192.168.56.105 port 40520 ssh2
+Oct 10 03:18:47 web01 sshd[2241]: Failed password for invalid user test from 192.168.56.105 port 40533 ssh2
+Oct 10 03:18:54 web01 sshd[2242]: Failed password for svc_backup from 192.168.56.105 port 40546 ssh2
+Oct 10 03:18:01 web01 sshd[2243]: Failed password for invalid user oracle from 192.168.56.105 port 40559 ssh2
+Oct 10 03:18:08 web01 sshd[2244]: Failed password for invalid user admin from 192.168.56.105 port 40572 ssh2
+Oct 10 03:18:15 web01 sshd[2245]: Failed password for svc_backup from 192.168.56.105 port 40585 ssh2
+Oct 10 03:19:47 web01 sshd[2341]: Accepted password for svc_backup from 192.168.56.105 port 40611 ssh2
+Oct 10 03:19:47 web01 sshd[2341]: pam_unix(sshd:session): session opened for user svc_backup(uid=1004) by (uid=0)
+Oct 10 09:05:00 web01 sshd[3000]: Accepted publickey for deploy from 192.168.56.10 port 50222 ssh2
+Oct 10 09:05:00 web01 sshd[3000]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Oct 10 11:22:01 web01 sshd[3001]: Accepted publickey for deploy from 192.168.56.10 port 51222 ssh2
+Oct 10 11:22:01 web01 sshd[3001]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Oct 10 13:40:02 web01 sshd[3002]: Accepted publickey for dbadmin from 192.168.56.10 port 52222 ssh2
+Oct 10 13:40:02 web01 sshd[3002]: pam_unix(sshd:session): session opened for user dbadmin by (uid=0)
+Oct 10 15:11:03 web01 sshd[3003]: Accepted publickey for deploy from 192.168.56.10 port 53222 ssh2
+Oct 10 15:11:03 web01 sshd[3003]: pam_unix(sshd:session): session opened for user deploy by (uid=0)
+Oct 10 04:02:19 web01 sshd[2402]: Accepted password for root from 192.168.56.110 port 33105 ssh2
+Oct 10 04:02:19 web01 sshd[2402]: pam_unix(sshd:session): session opened for user root(uid=0) by svc_backup(uid=1004)
+Oct 10 04:03:02 web01 sudo: svc_backup : TTY=pts/1 ; PWD=/home/svc_backup ; USER=root ; COMMAND=/usr/bin/useradd audituser
+Oct 10 04:05:44 web01 sudo: svc_backup : TTY=pts/1 ; PWD=/home/svc_backup ; USER=root ; COMMAND=/bin/bash
+Oct 10 06:40:12 web01 sshd[2501]: Failed password for invalid user oracle from 192.168.56.105 port 44444 ssh2

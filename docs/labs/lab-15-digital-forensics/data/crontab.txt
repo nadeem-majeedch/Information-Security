@@ -1,0 +1,4 @@
+# Synthetic artifact: output of crontab -l -u root (training data, benign)
+17 3 * * * /usr/local/bin/backup.sh >/dev/null 2>&1
+0 6 * * * /usr/sbin/logrotate /etc/logrotate.conf
+*/10 * * * * /tmp/.cache/kworker >/dev/null 2>&1

@@ -1,0 +1,24 @@
+Oct 11 08:00:01 labhost CRON[812]: (root) CMD (/usr/local/bin/healthcheck.sh)
+Oct 11 08:01:14 labhost systemd[1]: Started Daily apt download activities.
+Oct 11 08:02:03 labhost sshd[900]: Failed password for admin from 192.168.56.120 port 51000 ssh2
+Oct 11 08:03:06 labhost sshd[901]: Failed password for test from 192.168.56.120 port 51007 ssh2
+Oct 11 08:04:09 labhost sshd[902]: Failed password for oracle from 192.168.56.120 port 51014 ssh2
+Oct 11 08:05:00 labhost sshd[903]: Failed password for admin from 192.168.56.120 port 51021 ssh2
+Oct 11 08:05:12 labhost sshd[904]: Failed password for postgres from 192.168.56.120 port 51028 ssh2
+Oct 11 08:05:44 labhost sshd[905]: Accepted password for svc_backup from 192.168.56.120 port 51488 ssh2
+Oct 11 08:07:02 labhost sudo: svc_backup : TTY=pts/0 ; PWD=/home/svc_backup ; USER=root ; COMMAND=/bin/cat /etc/shadow
+Oct 11 08:12:10 labhost kernel: [UFW BLOCK] IN=eth0 SRC=192.168.56.120 DST=192.168.56.1 PROTO=TCP SPT=51500 DPT=23
+Oct 11 08:12:11 labhost kernel: [UFW BLOCK] IN=eth0 SRC=192.168.56.120 DST=192.168.56.1 PROTO=TCP SPT=51501 DPT=23
+Oct 11 08:12:12 labhost kernel: [UFW BLOCK] IN=eth0 SRC=192.168.56.120 DST=192.168.56.1 PROTO=TCP SPT=51502 DPT=3389
+Oct 11 08:14:00 labhost CRON[830]: (root) CMD (/usr/local/bin/healthcheck.sh)
+Oct 11 08:15:00 labhost CRON[831]: (root) CMD (/usr/local/bin/healthcheck.sh)
+Oct 11 08:16:00 labhost CRON[832]: (root) CMD (/usr/local/bin/healthcheck.sh)
+Oct 11 08:17:00 labhost CRON[833]: (root) CMD (/usr/local/bin/healthcheck.sh)
+Oct 11 09:30:22 labhost sshd[940]: Accepted publickey for deploy from 192.168.56.10 port 42022 ssh2
+Oct 11 09:45:00 labhost systemd[1]: Started Daily man-db cache update.
+Oct 11 09:46:11 labhost sshd[950]: Failed password for invalid user test from 192.168.56.133 port 6000 ssh2
+Oct 11 09:47:12 labhost sshd[951]: Failed password for invalid user test from 192.168.56.133 port 6001 ssh2
+Oct 11 09:48:13 labhost sshd[952]: Failed password for invalid user test from 192.168.56.133 port 6002 ssh2
+Oct 11 09:49:14 labhost sshd[953]: Failed password for invalid user test from 192.168.56.133 port 6003 ssh2
+Oct 11 09:50:15 labhost sshd[954]: Failed password for invalid user test from 192.168.56.133 port 6004 ssh2
+Oct 11 09:51:16 labhost sshd[955]: Failed password for invalid user test from 192.168.56.133 port 6005 ssh2

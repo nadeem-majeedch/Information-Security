@@ -1,0 +1,18 @@
+{
+  "_comment": "SYNTHETIC mock object-storage configuration for LAB-17 review. Not a real bucket; no cloud account required.",
+  "bucket_name": "corp-documents-archive",
+  "public_access_block": {
+    "block_public_acls": false,
+    "ignore_public_acls": false,
+    "block_public_policy": false,
+    "restrict_public_buckets": false
+  },
+  "acl_grants": [
+    {"grantee": "AllUsers", "permission": "READ"}
+  ],
+  "versioning": {"status": "Suspended"},
+  "server_side_encryption": {"enabled": false},
+  "logging": {"target_bucket": null},
+  "mfa_delete": "Disabled",
+  "tags": {"environment": "prod", "owner": "data-team"}
+}

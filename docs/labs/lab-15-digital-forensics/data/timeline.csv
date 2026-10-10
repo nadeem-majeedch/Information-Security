@@ -1,0 +1,21 @@
+timestamp_utc,source,event,detail
+2026-09-18T02:11:04Z,auth.log,login,Accepted publickey for www-data from 192.168.56.111 port 41022
+2026-09-18T02:14:39Z,webserver.log,exploit,"POST /upload.php?id=1 UNION SELECT password FROM admins"
+2026-09-18T02:14:41Z,webserver.log,upload,Uploaded file shell.jpg.php (12.4 KB) saved to /var/www/uploads/
+2026-09-18T02:15:02Z,webserver.log,exec,"GET /uploads/shell.jpg.php?cmd=id uid=33(www-data)"
+2026-09-18T02:16:10Z,webserver.log,exec,"GET /uploads/shell.jpg.php?cmd=uname+-a"
+2026-09-18T02:17:55Z,webserver.log,download,GET /stage/builder.sh from 66.42.88.19 (simulated external host)
+2026-09-18T02:18:31Z,auth.log,session,session opened for user www-data by (uid=0)
+2026-09-18T02:19:08Z,process.log,persistence,"crontab entry added for root: */10 * * * * /tmp/.cache/kworker"
+2026-09-18T02:19:44Z,file.artifacts,file_create,/tmp/.cache/kworker (mode 0755 owner root)
+2026-09-18T02:21:17Z,process.log,execution,/tmp/.cache/kworker started (parent: cron)
+2026-09-18T02:24:52Z,network.log,dns_query,query for cdn-metrics.badactor.example (reserved .example domain)
+2026-09-18T02:24:53Z,network.log,blocked_outbound,connection to cdn-metrics.badactor.example:443 blocked by egress filter
+2026-09-18T02:26:40Z,file.artifacts,data_staging,"tar czf /tmp/.cache/update.tar.gz /var/www/html/config.php /var/www/html/uploads/"
+2026-09-18T02:27:12Z,webserver.log,enumeration,GET /backup/ directory listing (3 files found)
+2026-09-18T02:29:03Z,process.log,persistence,useradd audituser (uid=1007 shell /bin/bash)
+2026-09-18T02:31:49Z,file.artifacts,defacement,/var/www/html/index.html modified (4112 bytes to 812 bytes)
+2026-09-18T02:33:26Z,network.log,blocked_outbound,POST attempt to cdn-metrics.badactor.example/upload blocked
+2026-09-18T02:35:00Z,detection.alert,alert,Rule fired: WEB_SHELL_EXECUTION (severity high)
+2026-09-18T02:41:12Z,response.action,containment,Host isolated from network by on-call analyst
+2026-09-18T02:55:30Z,response.action,forensics,Disk image web01.dd acquired (SHA-256 in chain-of-custody form)

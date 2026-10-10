@@ -1,0 +1,46 @@
+# Site configuration for the Information Security course (GitHub Pages, source: docs/).
+# Kept intentionally minimal: stock theme, whitelisted plugins only, no custom dependencies.
+# Maintainer notes (local build, publishing, validation): see MAINTENANCE.md at the repo root.
+
+title: Information Security — A Self-Study Course
+description: >-
+  A complete beginner-to-advanced, self-study Information Security course:
+  19 modules, free tools, isolated labs, and safety-first practice.
+author: Engr. Dr. Muhammad Nadeem Majeed
+theme: jekyll-theme-minimal
+
+url: https://nadeem-majeedch.github.io
+baseurl: /Information-Security
+
+permalink: pretty
+markdown: kramdown
+
+# These five are all in GitHub Pages' DEFAULT_PLUGINS and whitelist
+# (pages-gem lib/github-pages/plugins.rb). GitHub activates them automatically
+# in production; listing them here keeps local builds byte-comparable and
+# makes the site's behavior explicit. Do not add unlisted plugins — they are
+# silently ignored in production and cause "works locally, breaks live" drift.
+plugins:
+  - jekyll-relative-links      # ./page.md links work on the site and on GitHub
+  - jekyll-optional-front-matter # pages like quizzes need no YAML front matter
+  - jekyll-readme-index        # README.md serves as its folder's index
+  - jekyll-default-layout      # pages without a layout get the default layout
+  - jekyll-titles-from-headings # <title> from the first heading
+relative_links:
+  enabled: true
+  collections: true
+
+# Files in docs/ never rendered as pages (README.md kept so the folder listing
+# on GitHub stays readable; it has no front matter anyway).
+exclude:
+  - README.md
+  - Gemfile
+  - Gemfile.lock
+  - MAINTENANCE.md
+
+defaults:
+  - scope:
+      path: ""
+      type: pages
+    values:
+      layout: default
