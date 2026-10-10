@@ -32,11 +32,14 @@ relative_links:
 
 # Files in docs/ never rendered as pages (README.md kept so the folder listing
 # on GitHub stays readable; it has no front matter anyway).
+# `maintainers/` holds maintainer-only documentation — it must never ship with
+# the student site (see MAINTENANCE.md §6 and the workflow's leak check).
 exclude:
   - README.md
   - Gemfile
   - Gemfile.lock
   - MAINTENANCE.md
+  - maintainers
 
 defaults:
   - scope:

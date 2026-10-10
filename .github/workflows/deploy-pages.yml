@@ -1,0 +1,142 @@
+# Builds the Information Security course site (Jekyll, source: docs/) and
+# publishes it to GitHub Pages.
+#
+# Publishing is triggered by a manual push to `main` (or by a manual run from
+# the Actions tab). No pull_request trigger: untrusted code never runs with
+# deployment permissions. No secrets are used — only the built-in GITHUB_TOKEN
+# with the OIDC/id-token permission that GitHub Pages deployments require.
+#
+# Build architecture (see MAINTENANCE.md and docs/maintainers/):
+#   docs/  --(github-pages gem via actions/jekyll-build-pages)-->  _site/
+# The project-site base path (/Information-Security) comes from `baseurl` in
+# docs/_config.yml; the workflow cross-checks it against the real Pages base
+# path and fails if they disagree.
+#
+# Action SHAs are pinned to the exact commits of the release tags in the
+# trailing comments. Bump both together (SHA and comment) when updating.
+name: Deploy course site to GitHub Pages
+
+on:
+  # The designated publishing branch: push here to publish.
+  push:
+    branches:
+      - main
+  # Manual execution from the Actions tab.
+  workflow_dispatch:
+
+# Least privilege: read the repo, publish to Pages, mint the OIDC token.
+# Nothing else — no contents:write, so the workflow cannot commit anything.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# One deployment at a time. Queued runs between the in-progress run and the
+# newest queued run are skipped, but an active production deployment is never
+# cancelled mid-flight.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+
+      - name: Setup GitHub Pages
+        id: pages
+        uses: actions/configure-pages@45bfe0192ca1faeb007ade9deae92b16b8254a0d # v6.0.0
+
+      # Official GitHub Pages Jekyll builder: runs the stock `github-pages`
+      # gem (the exact environment GitHub's own Pages builds use) against
+      # docs/_config.yml. Dependencies are baked into the action's pinned
+      # container image, so there is no lockfile to install from and nothing
+      # to `gem install`. JEKYLL_ENV=production is set by the action.
+      - name: Build with Jekyll
+        uses: actions/jekyll-build-pages@44a6e6beabd48582f863aeeb6cb2151cc1716697 # v1.0.13
+        with:
+          source: ./docs
+          destination: ./_site
+
+      # Fail clearly if the output directory is missing, expected course pages
+      # are absent, or the project-site base path is wrong.
+      - name: Verify build output and base path
+        env:
+          BASE_PATH: ${{ steps.pages.outputs.base_path }}
+        run: |
+          set -euo pipefail
+
+          fail() { echo "::error::$1"; exit 1; }
+
+          # 1. The build must have produced the expected output directory.
+          if [ ! -d _site ]; then
+            fail "Build output directory '_site' is missing - the Jekyll build did not run or wrote somewhere else."
+          fi
+          if [ ! -f _site/index.html ]; then
+            fail "Build output is missing the landing page '_site/index.html'."
+          fi
+
+          # 2. Representative course pages must be present.
+          for page in \
+            _site/index.html \
+            _site/prerequisites/index.html \
+            _site/course-roadmap/index.html \
+            _site/assessment-guide/index.html \
+            _site/labs/README/index.html \
+            _site/modules/README/index.html \
+            _site/modules/module-01-information-security-foundations/README/index.html \
+            _site/modules/module-19-integrated-capstone-project/README/index.html
+          do
+            if [ ! -f "$page" ]; then
+              fail "Expected course page '$page' is missing from the build output."
+            fi
+          done
+
+          # 3. Project site: the configured baseurl must match what GitHub Pages
+          #    actually serves, and the rendered links must carry it.
+          configured_baseurl="$(sed -n 's/^baseurl:[[:space:]]*//p' docs/_config.yml | head -n 1 | tr -d "\"' ")"
+          if [ -z "$configured_baseurl" ]; then
+            fail "No baseurl found in docs/_config.yml - the project-site base path is not configured."
+          fi
+          if [ "$configured_baseurl" != "$BASE_PATH" ]; then
+            fail "baseurl in docs/_config.yml ('$configured_baseurl') does not match the GitHub Pages base path ('$BASE_PATH'). Update url/baseurl in docs/_config.yml to match the repository name (see docs/maintainers/github-pages-deployment.md)."
+          fi
+          if ! grep -q "href=\"${configured_baseurl}/" _site/index.html; then
+            fail "Rendered links in _site/index.html do not carry the base path '${configured_baseurl}' - check baseurl in docs/_config.yml."
+          fi
+
+          # 4. Maintainer-only documentation must never ship with the student site.
+          if [ -e _site/maintainers ]; then
+            fail "Maintainer-only documentation leaked into the build output (_site/maintainers). Check the 'exclude' list in docs/_config.yml."
+          fi
+
+          # 5. Full pass over the built output: internal links, links escaping the
+          #    baseurl, unrewritten .md links, maintainer files in the output.
+          if ! python3 scripts/check-site-links.py _site; then
+            fail "scripts/check-site-links.py reported problems in the built site."
+          fi
+
+          echo "Build OK: $(find _site -name '*.html' | wc -l) HTML pages, base path '${configured_baseurl}'."
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@fc324d3547104276b827a68afc52ff2a11cc49c9 # v5.0.0
+        with:
+          path: ./_site
+
+  deploy:
+    name: Deploy to GitHub Pages
+    runs-on: ubuntu-latest
+    needs: build
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@368f82528645a54fb793d4d04e342629a3f51346 # v5.0.1
+
+      - name: Report deployment URL
+        run: echo "Deployed to ${{ steps.deployment.outputs.page_url }}"

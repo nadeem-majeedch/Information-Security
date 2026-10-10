@@ -7,7 +7,7 @@ This document is kept **outside `docs/`** so it is never part of the published s
 
 ## 1. Architecture (keep it simple)
 
-- **Publishing:** GitHub Pages with source = `docs/` folder on the default branch (repository setting — do not change without reason).
+- **Publishing:** GitHub Pages, built and deployed by GitHub Actions — [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml) builds `docs/` and publishes on a push to `main`. Repository setting: **Settings → Pages → Source = GitHub Actions** (do not change without reason). Maintainer guide: [docs/maintainers/github-pages-deployment.md](docs/maintainers/github-pages-deployment.md).
 - **Generator:** Jekyll via the stock `github-pages` gem environment. Configuration lives in [`docs/_config.yml`](docs/_config.yml) and is intentionally minimal: `jekyll-theme-minimal`, no custom plugins beyond the GitHub Pages whitelist, no build steps, no API keys, no commercial services.
 - **Content:** plain Markdown with two small conventions:
   - YAML front matter (`title`, `layout: default`).
@@ -32,7 +32,7 @@ Notes:
 
 ## 3. Publishing and configuration maintenance
 
-- Deployment is handled by GitHub Pages itself (repository **Settings → Pages**, source `docs/`). This repo intentionally has **no deployment workflow**; do not add one without updating this file.
+- Deployment is handled by the workflow [`.github/workflows/deploy-pages.yml`](.github/workflows/deploy-pages.yml): push to `main` (or run it manually from the Actions tab) → build with the stock `github-pages` gem (`source: ./docs`, `destination: ./_site`) → verify output and base path → deploy. It uses only the built-in `GITHUB_TOKEN` + OIDC (`contents: read`, `pages: write`, `id-token: write`), triggers on no branch but `main`, never commits generated output, and cancels no in-flight deployment. The Pages source in repository settings must be **GitHub Actions**; step-by-step setup and troubleshooting: [docs/maintainers/github-pages-deployment.md](docs/maintainers/github-pages-deployment.md). If you change this workflow, update that guide in the same commit.
 - If the repository is renamed or forked, update `url`/`baseurl` in `docs/_config.yml` and re-run the local build.
 - Keep `_config.yml` free of plugins not whitelisted by GitHub Pages — unlisted plugins are silently ignored in production and cause "works locally, breaks live" drift. Whitelist reference: <https://pages.github.com/versions/>.
 - Do not add trackers, CDNs, or services that need API keys; the site must build and serve fully offline from the repository content.
@@ -48,6 +48,8 @@ python scripts/validate-references.py    # reference library, cross-links, URL m
 jekyll build -s docs -d _site            # site build must succeed
 python scripts/check-site-links.py _site # internal links in the built output
 ```
+
+The workflow's *Verify build output and base path* step re-runs `check-site-links.py` (plus landing-page, course-page, and base-path assertions) against the CI build, so any failure below also blocks the deploy.
 
 After a theme or config change, also eyeball the served site at mobile width and run a keyboard pass (Tab order, visible focus) — see §6 of the site's About page for the accessibility intent.
 
@@ -73,6 +75,7 @@ Rules for maintainers:
 
 1. New answer material is public **only** if it is referenced by published student text as a self-check, or wrapped in `<details>` with a "compare your reasoning" label.
 2. Genuinely instructor-only material (graders' notes, private rubrics, unreleased quizzes) must **not** live under `docs/` at all — put it in `docs-meta/` (repository root, never published) or add the path to `exclude:` in `docs/_config.yml` *and* note it here.
+   - **Noted:** `docs/maintainers/` (currently the GitHub Pages deployment guide) uses the second route — excluded via `exclude:` in `docs/_config.yml`. The workflow's verify step fails the build if it ever leaks into `_site/`.
 3. Never place answers in page metadata (titles, descriptions, image alt text, link text) — collapsed HTML is readable by anyone; metadata should never confirm an answer.
 4. After adding any answer file, re-run `python scripts/validate-assessments.py` and grep the `_site/` output to confirm the exposure is the intended one.
 
